@@ -51,6 +51,7 @@ class GoodsListView(APIView):
 
 
 
+
 class GoodsDetailView(APIView):
     pass
 
