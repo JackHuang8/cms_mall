@@ -5,14 +5,16 @@ from django.http import HttpResponse
 # a = 111
 # def test(request):
 #     return HttpResponse('test',a)
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 #GET /goods/cate/
+import goods
 from goods import serializers
 from goods.models import GoodsCategory, Goods
 
-
+# http://127.0.0.1:8000/goods/cate/
 class GoodsCateView(APIView):
     '''商品类别视图'''
 
@@ -39,9 +41,29 @@ class GoodsCateView(APIView):
         return Response(data_list)
 
 
+#http://127.0.0.1:8000/goods/red
 class GoodsRedView(APIView):
     '''商品推荐'''
-    pass
+    def get(self,request):
+    #     goods_queryset = Goods.objects.filter(is_red=1).exclude(img_url="").order_by('-sales')[0:4]
+    #     # 遍历要推荐商品查询集,获得每个推荐商品对象
+    #     # goodre_list = []
+    #
+    #     # for goodre in goods_queryset:
+    #     #     goodre_dict = serializers.GoodsSerializer(goodre).data
+    #     #     print(goodre_dict)
+    #     #     goodre_dict['id'] = serializers.GoodsSerializer(goodre.id).data
+    #     #     goodre_dict['title'] = serializers.GoodsSerializer(goodre.title).data
+    #     #     goodre_dict['img_url'] = serializers.GoodsSerializer(goodre.img_url).data
+    #     #     goodre_dict['create_time'] = serializers.GoodsSerializer(goodre.create_time).data
+    #     #     goodre_list.append(goodre_dict)
+    #     return Response(goodre_list)
+    # queryset= Goods.objects.filter(is_red=1).exclude(img_url="").order_by('-sales')[0:4]
+    # serializer_class = serializers.GoodsSerializer
+        goods_queryset = Goods.objects.filter(is_red=1).exclude(img_url="").order_by('-sales')[0:4]
+
+        data = serializers.GoodsSerializer(goods_queryset,many=True).data
+        return Response(data)
 
 class GoodsCate_RedView(APIView):
     pass
@@ -58,6 +80,7 @@ class GoodsDetailView(APIView):
 
 
 class GoodsDetaiRedlView(APIView):
+
     pass
 
 

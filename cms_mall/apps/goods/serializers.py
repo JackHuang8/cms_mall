@@ -16,4 +16,4 @@ class GoodsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Goods
-        fields = ('id', 'title', 'img_url', 'sell_price', 'market_price', 'sub_title', 'stock')
+        fields = ('id', 'title', 'img_url', 'sell_price', 'market_price', 'sub_title', 'stock','sales','title','create_time')
