@@ -87,11 +87,21 @@ var vm = new Vue({
 
         // 获取短信
         get_sms_code: function() {
+             // 如果显示了短信验证码出错提示, 则隐藏它
+            this.error_sms_code = false;
             this.check_phone();
 
             if (!this.error_phone) {
 				//发送获取请求
-				
+				axios.get('http://127.0.0.1:8000/sms_codes/' + this.mobile + '/')
+                    .then(response=>{
+                        console.log('获取短信验证码成功')
+                    })
+                    .catch(error=>{
+                        // 显示出错信息
+                        this.error_sms_code=True;
+                        this.error_name_message=error.response.data.message;
+                    })
             }
         },
 
