@@ -16,6 +16,7 @@ from goods.models import GoodsCategory, Goods
 class GoodsCateView(APIView):
     '''商品类别视图'''
 
+
     def get(self,request):
         #查询所有的一级分类
         category_queryset = GoodsCategory.objects.filter(parent_id=0)
