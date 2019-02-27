@@ -39,7 +39,7 @@ class GoodsCateView(APIView):
 
 
 class GoodsRedView(APIView):
-    '''商品推荐'''
+    pass
 
 class GoodsCate_RedView(APIView):
     pass
