@@ -93,7 +93,7 @@ DATABASES = {
         'PORT': 3306,
         'USER': 'root',
         'PASSWORD': 'mysql',
-        'NAME': 'django04_cms'
+        'NAME': 'cms'
     }
 }
 
