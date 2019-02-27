@@ -11,14 +11,20 @@ var vm = new Vue({
     },
 
     methods: {
-		//获取推荐商品
+        //获取推荐商品
         get_recommend_goods: function () {
-           //发送请求
-                })
+            //发送请求
+
         },
-		//获取分类商品
+        //获取分类商品
         get_category_goods: function () {
-           //发送请求
+            //发送请求
+            axios.get('http://127.0.0.1:8000/goods/cate/')
+                .then(response => {
+                    this.categories = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error.response)
                 })
         },
     },
@@ -32,4 +38,5 @@ var vm = new Vue({
             return dateFormat(time, "yyyy-mm-dd HH:MM:ss");
         },
     },
+
 });
