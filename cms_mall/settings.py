@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'news',
     'goods',
     'carts',
+    'verifications',
 ]
 
 MIDDLEWARE = [
@@ -149,7 +150,7 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
-    "verify_codes": {  # 保存短信验证码
+    "sms_codes": {  # 保存短信验证码
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/2",
         "OPTIONS": {
