@@ -5,13 +5,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from redis.client import StrictRedis
 
-from libs.yuntongxun.sms import CCP
+from cms_mall.libs.yuntongxun.sms import CCP
 
 
 class SMSCodeView(APIView):
     def get(self, request, mobile):
         # 获取StrictRedis对象保存数据
         strict_redis = get_redis_connection('sms_codes')  # type:StrictRedis
+
 
         # 4、60秒内禁止重复发送短信验证码
         send_flag = strict_redis.get('send_flag_%s' % mobile)
